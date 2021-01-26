@@ -1,0 +1,9 @@
+name: Promosyon
+version: 1.0
+main: Promosyon\Base
+api: 3.0.0
+author: EfePolat7749
+
+commands:
+  promosyon:
+    description: Promosyon Kodun Varsa Bu Komut Tam Sana Göre!
