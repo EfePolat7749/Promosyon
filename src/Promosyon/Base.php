@@ -21,9 +21,10 @@ use FormAPI\{SimpleForm, CustomForm};
 use pocketmine\command\{Command, CommandSender};
 use pocketmine\utils\Config;
 use pocketmine\item\Item;
+use pocketmine\event\Listener;
 use onebone\economyapi\EconomyAPI;
 
-class Base extends Command{
+class Base extends PluginBase implements Listener{
 
 
     public $mesaj = "";
