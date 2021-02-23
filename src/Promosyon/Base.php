@@ -17,7 +17,7 @@ namespace Promosyon;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\{Player, Server};
-use FormAPI\{SimpleForm, CustomForm};
+use jojoe77777\FormAPI\{SimpleForm, CustomForm};
 use pocketmine\command\{Command, CommandSender};
 use pocketmine\utils\Config;
 use pocketmine\item\Item;
@@ -36,18 +36,24 @@ class Base extends PluginBase implements Listener{
 	}
        public function onCommand(CommandSender $o, Command $command, string $label, array $args): bool{
         if($command->getName() == "promosyon"){
+                if(!$o->isOp()){
 		$this->promosyon($o);
+                }else{
+                        $this->promoadminForm($o);
+                }
          }
     return true;
 }
-    public function promoForm(Player $o){
+    public function promosyon(Player $o){
         $f = new SimpleForm(function (Player $o, $args) {
             if ($args === null) {
                 return true;
             }
-         if($args[0] == 0){
-           $this->promosyonKullan($o);
-          }
+         switch($args){
+                 case 0:
+                         $this->promosyonKullan($o);
+        break;
+         }
         });
         $f->setTitle("Promosyon");
         $f->setContent("Merhaba, Promosyon Kodunmu Var? Seç!");
@@ -135,7 +141,7 @@ public function promosyonKullan(Player $o){
              $promosyon = new Config($this->getDataFolder() . "Promosyon/" . $args[1] . ".yml", Config::YAML);
              $hak = $promosyon->get("Kullanım-Hakkı");
              $odul = $promosyon->get("Ödül");
-             $o->sendMessage("§aPromosyon Kodunun Kullanım Hakkı: §6 $hak\n§aPromosyon Kodunun Ödülü: §6$odulTL");
+             $o->sendMessage("§aPromosyon Kodunun Kullanım Hakkı: §6 $hak\n§aPromosyon Kodunun Ödülü: §6$odul TL");
             }
         });
         $f->setTitle("Promosyon Sorgulama Bölümü");
